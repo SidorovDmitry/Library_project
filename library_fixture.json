@@ -1,0 +1,47 @@
+[
+{
+    "model": "library.author",
+    "pk": 1,
+    "fields": {
+        "first_name": "Dmitrii",
+        "last_name": "Sidorov",
+        "birth_date": "1986-04-20"
+    }
+},
+{
+    "model": "library.author",
+    "pk": 2,
+    "fields": {
+        "first_name": "Иван",
+        "last_name": "Иванов",
+        "birth_date": "1986-09-15"
+    }
+},
+{
+    "model": "library.author",
+    "pk": 3,
+    "fields": {
+        "first_name": "Мария",
+        "last_name": "Сидорова",
+        "birth_date": "1986-09-15"
+    }
+},
+{
+    "model": "library.book",
+    "pk": 2,
+    "fields": {
+        "title": "Как вынести мозг",
+        "publication_date": "2025-07-17",
+        "author": 2
+    }
+},
+{
+    "model": "library.book",
+    "pk": 3,
+    "fields": {
+        "title": "Что нужно в жизни",
+        "publication_date": "2025-06-17",
+        "author": 3
+    }
+}
+]
