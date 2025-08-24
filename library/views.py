@@ -1,33 +1,54 @@
-from .models import Book
+from .models import Book, Author
 
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .forms import AuthorForm, BookForm
 
+
+class AuthorUpdateView(UpdateView):
+    model = Author
+    form_class = AuthorForm
+    template_name = 'library/author_form.html'
+    success_url = reverse_lazy('library:authors_list')
+
+class AuthorCreateView(CreateView):
+    model = Author
+    form_class = AuthorForm
+    template_name = 'library/author_form.html'
+    success_url = reverse_lazy('library:authors_list')
+
+class AuthorListView(ListView):
+    model = Author
+    template_name = 'library/authors_list.html'
+    context_object_name = 'authors'
+
+class BookCreateView(CreateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'library/book_form.html'
+    success_url = reverse_lazy('library:books_list')
+
+class BookUpdateView(UpdateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'library/book_form.html'
+    success_url = reverse_lazy('library:books_list')
 
 class BooksListView(ListView):
     model = Book
     template_name = 'library/books_list.html'
     context_object_name = 'books'
 
-class BookCreateView(CreateView):
-    model = Book
-    fields = ['title', 'publication_date', 'author']
-    template_name = 'library/book_form.html'
-    success_url = reverse_lazy('library:books_list')
+
 
 
 class BookDetailView(DetailView):
     model = Book
-    template_name = 'library/book_detail.html   '
-    context_object_name = 'books'
+    template_name = 'library/book_detail.html'
+    context_object_name = 'book'
 
 
-class BookUpdateView(UpdateView):
-    model = Book
-    fields = ['title', 'publication_date', 'author']
-    template_name = 'library/book_form.html'
-    success_url = reverse_lazy('library:books_list')
 
 
 class BookDeleteView(DeleteView):

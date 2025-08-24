@@ -1,9 +1,9 @@
 <!-- header.html -->
 <div class="header">
     <h1>Библиотека</h1>
-    <nav>
-        <a href="{% url 'books_list' %}">Список книг</a>
-        <a href="{% url 'book_create' %}">Добавить книгу</a>
-    </nav>
+    {% if user.is_authenticated %}
+        <p>Добро пожаловать, {{user.last_name}}!</p>
+    {% else %}
+        <p>Добро пожаловать на сайт</p>
+    {% endif %}
 </div>
-<hr>
