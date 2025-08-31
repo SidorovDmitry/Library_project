@@ -8,12 +8,15 @@
 <p>Автор: {{ book.author.first_name }} {{ book.author.last_name }}</p>
 <p>Дата публикации: {{ book.publication_date|date:"d M Y" }}</p>
 <p>Количество книг автора: {{ author_books_count }}</p>
+<p>Средний рейтинг: {{ average_rating }}</p>
+<p>Популярная: {{ is_popular|yesno:"Да,Нет" }}</p>
+<a href="{% url 'library:books_list' %}" class="btn btn-primary">Назад к списку книг</a>
 <a href="{% url 'library:book_update' book.pk %}" class="btn btn-secondary">Редактировать</a>
 <a href="{% url 'library:book_delete' book.pk %}" class="btn btn-danger">Удалить</a>
 <a href="{% url 'library:books_list' %}" class="btn btn-primary">Вернуться к списку</a>
 
 {% if "library.can_review_book" in perms %}
-    <form action="{% url 'library:review_book' book.id %}" method="post">
+    <form action="{% url 'library:book_review' book.id %}" method="post">
         {% csrf_token %}
         <textarea name="review" placeholder="Напишите рецензию"></textarea>
         <button type="submit">Рецензировать</button>
@@ -21,7 +24,7 @@
 {% endif %}
 
 {% if "library.can_recommend_book" in perms %}
-    <form action="{% url 'library:recommend_book' book.id %}" method="post">
+    <form action="{% url 'library:book_recommend' book.id %}" method="post">
         {% csrf_token %}
         <button type="submit">Рекомендовать</button>
     </form>
